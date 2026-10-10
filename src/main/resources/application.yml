@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: lumen-doc-reviewer
+  datasource:
+    url: ${DOC_REVIEW_DB_URL:jdbc:postgresql://localhost:15433/lumen_doc_reviewer}
+    driver-class-name: ${DOC_REVIEW_DB_DRIVER:org.postgresql.Driver}
+    username: ${DOC_REVIEW_DB_USERNAME:${POSTGRES_USER:lumen}}
+    password: ${DOC_REVIEW_DB_PASSWORD:${POSTGRES_PASSWORD:lumenpw}}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: ${DOC_REVIEW_JPA_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+
+doc-review:
+  upload-dir: ./data/uploads
+  custom-template-dir: ./data/templates/review
+  duplicate-threshold: 0.72
+  ai:
+    mock: ${DOC_REVIEW_MOCK:false}
+    base-url: ${DOC_REVIEW_AI_BASE_URL:${OPENAI_BASE_URL:https://ark.cn-beijing.volces.com/api/plan/v3}}
+    api-key: ${DOC_REVIEW_AI_API_KEY:${OPENAI_API_KEY:}}
+    default-model: ${DOC_REVIEW_AI_MODEL:${OPENAI_MODEL:ark-code-latest}}
+    timeout-seconds: 120

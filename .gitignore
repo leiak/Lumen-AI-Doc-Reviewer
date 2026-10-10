@@ -1,0 +1,7 @@
+.m2/
+target/
+data/
+*.log
+*.png
+!ai-rules-ui.png
+!latest-review-report-2.png

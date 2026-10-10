@@ -1,0 +1,10 @@
+name: paper
+version: "1.0"
+documentType: paper
+chunkBy: section
+maxChunkTokens: 30000
+reviewers:
+  - role: logic
+    prompt: "审查论证逻辑、假设、结论支持和研究方法是否完整。"
+  - role: evidence
+    prompt: "检查数据支撑、实验设计、引用规范和结论是否匹配。"

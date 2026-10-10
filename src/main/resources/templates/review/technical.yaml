@@ -1,0 +1,12 @@
+name: technical
+version: "1.0"
+documentType: proposal
+chunkBy: section
+maxChunkTokens: 30000
+reviewers:
+  - role: architecture
+    prompt: "评估技术方案的可行性、可维护性、边界条件和实施风险。"
+  - role: security
+    prompt: "识别安全威胁、权限漏洞、数据保护问题和合规风险。"
+  - role: cost
+    prompt: "审查成本估算、资源投入和可扩展性是否合理。"

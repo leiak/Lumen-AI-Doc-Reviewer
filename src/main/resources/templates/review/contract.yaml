@@ -1,0 +1,12 @@
+name: contract
+version: "1.0"
+documentType: contract
+chunkBy: section
+maxChunkTokens: 30000
+reviewers:
+  - role: legal_risk
+    prompt: "审查合同条款，识别责任不对等、违约风险、模糊表述、单方权利条款，并给出可执行的修订建议。"
+  - role: compliance
+    prompt: "检查条款是否符合相关法规要求，识别缺失的保护条款和合规风险。"
+  - role: business_logic
+    prompt: "从商业角度审查条款是否合理、是否存在商业漏洞和执行成本风险。"

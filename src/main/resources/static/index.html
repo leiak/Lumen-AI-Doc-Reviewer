@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lumen Doc Reviewer</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="brand">
+        <span class="logo">LD</span>
+        <div><h1>文档审查助手</h1><p>多角色并行审查 · 风险量化 · 反馈闭环</p></div>
+      </div>
+      <div id="mode" class="mode-badge">Loading</div>
+    </header>
+
+    <section class="panel upload-panel">
+      <form id="upload-form">
+        <label>审查模板
+          <select id="template" required></select>
+        </label>
+        <label>选择文档
+          <input id="file" type="file" accept=".md,.markdown,.txt,.docx,.pdf" required>
+        </label>
+        <label>上一版本
+          <select id="previous-session"><option value="">全新审查</option></select>
+        </label>
+        <button id="upload-button" type="submit">开始审查</button>
+      </form>
+      <p class="hint">支持 Markdown、TXT、DOCX、PDF。默认使用 Mock 模型，便于本地演示。</p>
+    </section>
+
+    <section class="panel">
+      <h2>审查规则</h2>
+      <div class="rule-toolbar">
+        <select id="rule-template"></select>
+        <button id="generate-rules" type="button">AI 生成规则</button>
+        <button id="add-rule" type="button">新增规则</button>
+        <button id="save-rules" type="button">保存规则</button>
+        <button id="reset-rules" type="button" class="secondary">恢复默认</button>
+      </div>
+      <div class="rule-generation">
+        <label>业务背景
+          <textarea id="rule-context" rows="3" placeholder="描述要审查的业务、系统、合同或论文主题，AI 会据此生成更贴合的规则。"></textarea>
+        </label>
+        <label>规则数量
+          <input id="rule-count" type="number" min="1" max="8" value="5">
+        </label>
+      </div>
+      <p class="hint">规则会作为独立审查角色并行执行，可按业务需要调整审查重点。</p>
+      <div id="reviewers" class="reviewers"></div>
+    </section>
+
+    <section id="result" class="hidden">
+      <section class="panel">
+        <div class="result-head">
+          <div>
+            <h2 id="doc-name">审查结果</h2>
+            <p id="doc-status">状态：等待中</p>
+          </div>
+          <div id="risk-score" class="score">--</div>
+        </div>
+        <div class="actions">
+          <button id="refresh" type="button">刷新结果</button>
+          <button id="delete-session" type="button" class="secondary">删除会话</button>
+          <a id="report-md" class="secondary" target="_blank" href="#">Markdown 报告</a>
+          <a id="report-html" class="secondary" target="_blank" href="#">HTML 报告</a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>审查发现</h2>
+        <div id="findings" class="findings"></div>
+      </section>
+
+      <section class="panel">
+        <h2>文档分段</h2>
+        <div id="segments" class="segments"></div>
+      </section>
+
+      <section class="panel">
+        <h2>审计日志</h2>
+        <div id="audit" class="segments"></div>
+      </section>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
