@@ -25,9 +25,7 @@ Lumen Doc Reviewer 是一个面向合同、技术方案和论文的多角色文�
 
 ![审查规则面板](docs/images/ai-rules-ui.png)
 
-审查完成后可以查看结构化发现和报告：
-
-![审查报告](docs/images/latest-review-report-2.png)
+审查完成后可以在界面上查看结构化发现和报告，并通过 `/api/doc/{id}/report?format=markdown|html` 下载。
 
 ## 环境要求
 
